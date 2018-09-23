@@ -31,7 +31,7 @@ jobs:
 
       # run tests!
       - run: yarn test
-      - set up remote docker
+      - setup_remote_docker
       - run: docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
       - run:
         name: "Build docker image and push to docker hub"
