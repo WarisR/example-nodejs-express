@@ -44,15 +44,15 @@ jobs:
       - run:
           name: "Call to deploy"
           command: |
-            docker run --rm -rt \
-              -e CATTLE_ACCESS_KEY="$CATTLE_ACCESS_KEY" \
-              -e CATTLE_SECRET_KEY="$CATTLE_SECRET_KEY" \
-              -e CATTLE_URL="$CATTLE_URL" \
-              eltweather/gaucho upgrade $RANCHER_EXAMPLE_NODEJS \
-              --imageUuid 'docker/warisr/example-nodejs-circle:latest' \
-              --batch_size 3 --start_first \
-              --auto_complete --time_out 600 \
-              /
+              docker run --rm -rt \
+                -e CATTLE_ACCESS_KEY="$CATTLE_ACCESS_KEY" \
+                -e CATTLE_SECRET_KEY="$CATTLE_SECRET_KEY" \
+                -e CATTLE_URL="$CATTLE_URL" \
+                eltweather/gaucho upgrade $RANCHER_EXAMPLE_NODEJS \
+                --imageUuid 'docker/warisr/example-nodejs-circle:latest' \
+                --batch_size 3 --start_first \
+                --auto_complete --time_out 600 \
+                /
       - run: echo Done
 
 
