@@ -34,7 +34,7 @@ jobs:
       - run: docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
       - run:
         name: "Build docker image and push to docker hub"
-        command:
+        command: |
           cp Dockerfile.production Dockerfile
           docker build -t warisr/example-nodejs-circle:latest .
           docker build -t warisr/example-nodejs-circle:${CIRCLE_SHA1} .
