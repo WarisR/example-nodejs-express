@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node:8.11.1-stretch
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -31,4 +31,14 @@ jobs:
 
       # run tests!
       - run: yarn test
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run:
+        name: "Build docker image and push to docker hub"
+        command:
+          cp Dockerfile.production Dockerfile
+          docker build -t warisr/example-nodejs-circle:latest .
+          docker build -t warisr/example-nodejs-circle:${CIRCLE_SHA1} .
+          docker push warisr/example-nodejs-circle:latest
+          docker push warisr/example-nodejs-circle:${CIRCLE_SHA1}
+      - run: echo Done
 
